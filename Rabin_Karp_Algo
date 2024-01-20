@@ -1,0 +1,22 @@
+#Rabin Karp
+hashcode={"a":0,"c":1,"g":2,"t":3}
+pattern="tccg"
+text="attccgt"
+m=len(pattern)
+n=len(text)
+k=n-m+1
+print("the value of k is",k)
+t0=int((hashcode[text[m-1]])+k*((hashcode[text[m-2]])+k*((hashcode[text[m-3]])+k*((hashcode[text[0]])))))
+print("value of t0",t0)
+ti=[]
+ti.append(t0)
+for i in range(1,k):
+  tr=0
+  tr=k*(ti[i-1]-k**(m-1)*hashcode[text[i-1]])+hashcode[text[i+m-1]]
+  ti.append(tr)
+  print(ti)
+p=int((hashcode[pattern[m-1]])+k*((hashcode[pattern[m-2]])+k*((hashcode[pattern[m-3]])+k*((hashcode[pattern[0]])))))
+print("value of p",p)
+for i in range(len(ti)):
+  if(ti[i]==p):
+    print("Pattern is found at position no.",i)
